@@ -10,15 +10,17 @@ def draw_line(x1, y1, x2, y2):
     dy = abs(y2 - y1)
     slope = dy / dx
     points = []
+    decision = []
 
     if slope < 1:
-        # Case 1: slope < 1
+        # Case 1: 0 < slope < 1
         p = 2 * dy - dx  # Decision Parameter
         x = x1
         y = y1
 
         while x <= x2:
             points.append((x, y))
+            decision.append(p)
             x += 1
 
             if p < 0:
@@ -34,6 +36,7 @@ def draw_line(x1, y1, x2, y2):
 
         while y <= y2:
             points.append((x, y))
+            decision.append(p)
             y += 1
 
             if p < 0:
@@ -55,6 +58,11 @@ def draw_line(x1, y1, x2, y2):
     file_name = f'images/bresenham_line_{imgCounter}.png'
     plt.savefig(file_name)
     plt.show()
+
+    print('Endpoints :', f'[{x1}, {y1}]', f'[{x2}, {y2}]')
+    print('Intermediate Points :', points)
+    print('Decision Parameters :', decision)
+
 
     imgCounter += 1
 
